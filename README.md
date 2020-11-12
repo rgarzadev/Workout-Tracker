@@ -35,5 +35,5 @@ n/a
 
 ##### License:
 
-None
+No license.
 
