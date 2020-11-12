@@ -4,15 +4,18 @@ const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3000;
 
+//importing mongoose models
 const db = require("./models");
 
 const app = express();
 
+//express middlewares
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+//mongo atlas db connection data/info
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/workout",
   {
@@ -23,10 +26,13 @@ mongoose.connect(
   }
 );
 
-// routes
+//load api routes
 require("./routes/api.js")(app)
+
+//load html routes
 require("./routes/view.js")(app)
 
+//start server
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
